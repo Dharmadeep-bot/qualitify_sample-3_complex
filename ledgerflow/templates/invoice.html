@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<section aria-labelledby="invoice-heading">
+  <h1 id="invoice-heading">Invoice {{ invoice.reference }}</h1>
+  <p>Total due: {{ invoice.total_cents }} cents ({{ invoice.status }})</p>
+  <form id="invoice-pay-form" method="post" action="/invoices/{{ invoice.id }}/pay">
+    <label for="billing-note">Billing note</label>
+    <input id="billing-note" name="note" type="text">
+    <div class="pay-action" onclick="submitInvoicePayment()">Pay invoice</div>
+  </form>
+</section>
+<script src="/static/checkout.js"></script>
+{% endblock %}
